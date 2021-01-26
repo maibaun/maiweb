@@ -209,7 +209,7 @@ class Store extends Component {
             {/* <SimpleMap/> */}
             <Stores/>
           </div>
-          <Grid container spacing={3}>
+          {/* <Grid container spacing={3}>
             <div><h3>Store Menu </h3></div>
            <div>
               <TextField
@@ -225,7 +225,7 @@ class Store extends Component {
                 Save
               </Button>
               <div>
-              {/* < Upimage/> */}
+              < Upimage/>
               </div>
             </div>
 
@@ -244,10 +244,10 @@ class Store extends Component {
                 Save
               </Button>
               <div>
-              {/* < Upimage/> */}
+              < Upimage/>
               </div>
             </div>
-          </Grid>
+          </Grid> */}
       </div>
       </>
     )
