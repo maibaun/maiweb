@@ -17,7 +17,10 @@ import { render } from '@testing-library/react';
 import { downloadImageToStorage } from '../../fQuery';
 import { storageSvc } from '../../fBase';
 import { AttachmentType } from '../Places/PlacesPopup';
-
+import ContainerMaps from './ContainerMaps';
+import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
+import { MapContainer } from './MapContainer';
+import Autocomplete from 'react-google-autocomplete';
 // const MAP_APIKEY = `AIzaSyCfYCam9LoTBqherZAtERrPrkOD1ZzlSzU`;
 // const GEOCODING_APIKEY = `${process.env.REACT_APP_GEOCODING_API_KEY}`;
 
@@ -53,7 +56,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     tableHead: {
         backgroundColor: "#09014a"
-    }
+    },
+    Maps:{
+      width: 1000,
+      height: 50,
+      border: 'solid',
+    },
   }),
 );
 
@@ -107,8 +115,8 @@ function Stores(this: any) {
         setInputs((prevState) => ({ ...prevState, [name]: value }));
     }
 
-    
 
+   
     const [store , setStore] = useState<any>([]);
     const [item, setItem] = useState<any>([]);
     const [storename, setStorename] = useState("");
@@ -432,8 +440,9 @@ function Stores(this: any) {
         });
     }
 
+    const [value, setValue] = useState(null);
 
-
+ 
   return (
       <>
        <body>
@@ -458,6 +467,21 @@ function Stores(this: any) {
                     required
                 />
 
+                <Autocomplete
+                    style={{width: '90%'}}
+                    onPlaceSelected={(place: any) => {
+                      console.log(place);
+                    }}
+                    types={['(regions)']}
+                    componentRestrictions={{country: "ru"}}
+                />
+                {/* <GooglePlacesAutocomplete
+                apiKey="AIzaSyCfYCam9LoTBqherZAtERrPrkOD1ZzlSzU"
+                  // selectProps={{
+                  //   value,
+                  //   onChange: setValue,
+                  // }}
+                /> */}
                 <TextField
                     id="pac-input"
                     type="text"
@@ -473,6 +497,10 @@ function Stores(this: any) {
                     required
                     style={{marginTop: '10px'}}
                 />
+                <div style={{width: 500, height: 500}} >
+                    {/* <ContainerMaps/> */}
+                                    <MapContainer/>
+                </div>
                 {/* <TextField
                 id="pac-input"
                 name="pac-input"
